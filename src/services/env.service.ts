@@ -8,6 +8,11 @@ type GoogleSpreadSheetEnvs =
 @Injectable()
 export class EnvService {
   getEnv(envKey: GoogleSpreadSheetEnvs): string {
-    return process.env[envKey];
+    try {
+      return JSON.parse(process.env[envKey]);
+    } catch (e) {
+      console.error(e);
+      return '';
+    }
   }
 }
