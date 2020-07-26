@@ -7,12 +7,18 @@ type GoogleSpreadSheetEnvs =
 
 @Injectable()
 export class EnvService {
-  getEnv(envKey: GoogleSpreadSheetEnvs): string {
-    try {
-      return JSON.parse(process.env[envKey]);
-    } catch (e) {
-      console.error(e);
+  getEnv(envKey: GoogleSpreadSheetEnvs, isMultiLine?: boolean): string {
+    const envVar = process.env[envKey];
+
+    if (!envVar) {
+      console.error(`${envKey} is undefined`);
       return '';
     }
+
+    if (isMultiLine) {
+      return envVar.replace(/\\n/g, '\n');
+    }
+
+    return envVar;
   }
 }
