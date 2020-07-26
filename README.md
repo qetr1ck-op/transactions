@@ -10,6 +10,7 @@ TODO
 2. setup document sharing
 3. about google-spreadsheet and authentication
 4. env usage
+5. usage with heroku
 
 ## Installation
 
