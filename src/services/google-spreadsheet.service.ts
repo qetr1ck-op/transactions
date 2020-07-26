@@ -41,11 +41,15 @@ export class GoogleSpreadsheetService {
   }
 
   private async useServiceAccountAuth(): Promise<void> {
-    console.log(this.envService.getEnv('GOOGLE_PRIVATE_KEY'));
+    console.log(
+      this.envService.getEnv('GOOGLE_PRIVATE_KEY').replace(/\\n/g, '\n'),
+    );
 
     await this.document.useServiceAccountAuth({
       client_email: this.envService.getEnv('GOOGLE_SERVICE_ACCOUNT_EMAIL'),
-      private_key: this.envService.getEnv('GOOGLE_PRIVATE_KEY'),
+      private_key: this.envService
+        .getEnv('GOOGLE_PRIVATE_KEY')
+        .replace(/\\n/g, '\n'),
     });
   }
 }
