@@ -19,6 +19,7 @@ export class AppController {
 
   @Post('transactions')
   async postTransactions(@Body() body: TransactionRequest) {
+    console.log(body);
     try {
       const {
         amount,

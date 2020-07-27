@@ -11,6 +11,7 @@ TODO
 3. about google-spreadsheet and authentication
 4. env usage
 5. usage with heroku
+   - heroku logs --tail -a my-transactions-app
 
 ## Installation
 
