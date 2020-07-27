@@ -1,5 +1,10 @@
 // https://api.monobank.ua/docs/
 export interface MonoTransactionRequest {
+  type: string;
+  statementItem: MonoTransaction;
+}
+
+export interface MonoTransaction {
   id: string;
   time: number;
   description: string;
@@ -12,8 +17,6 @@ export interface MonoTransactionRequest {
   cashbackAmount: number;
   balance: number;
 }
-
-export type TransactionRequest = MonoTransactionRequest;
 
 export interface Transaction {
   id: string;

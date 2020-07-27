@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { HealthCheckService } from '../services/health-check.service';
 import { MonoTransactionService } from 'src/services/mono-transaction.service';
-import { TransactionRequest } from 'src/types/transaction';
+import { MonoTransactionRequest } from 'src/types/transaction';
 import { GoogleSpreadsheetService } from 'src/services/google-spreadsheet.service';
 
 @Controller()
@@ -17,8 +17,8 @@ export class AppController {
     return this.healthCheckService.check();
   }
 
-  @Post('transactions')
-  async postTransactions(@Body() body: TransactionRequest) {
+  @Post('transactions/mono')
+  async postTransactions(@Body() body: MonoTransactionRequest) {
     console.log(body);
     try {
       const {
@@ -26,7 +26,7 @@ export class AppController {
         date,
         monthIndex,
         description,
-      } = this.monoTransactionService.parse(body);
+      } = this.monoTransactionService.parse(body.statementItem);
 
       await this.googleSpreadsheetService.initSpreadsheetDocument();
 

@@ -1,13 +1,13 @@
 import {
   TransactionParser,
-  MonoTransactionRequest,
   Transaction,
+  MonoTransaction,
 } from '../types/transaction';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class MonoTransactionService implements TransactionParser {
-  parse(transaction: MonoTransactionRequest): Transaction {
+  parse(transaction: MonoTransaction): Transaction {
     const monthIndex = this.toTransactionMonthIndex(transaction.time);
     const date = this.toTransactionDate(transaction.time);
     const amount = this.toPrice(transaction.amount);
