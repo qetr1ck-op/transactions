@@ -19,6 +19,8 @@ export class AppController {
 
   @Post('transactions/mono')
   async postTransactions(@Body() body: MonoTransactionRequest) {
+    // TODO: validation
+    // TODO: third-party logging
     console.log(body);
     try {
       const {
@@ -26,7 +28,7 @@ export class AppController {
         date,
         monthIndex,
         description,
-      } = this.monoTransactionService.parse(body.statementItem);
+      } = this.monoTransactionService.parse(body.data.statementItem);
 
       await this.googleSpreadsheetService.initSpreadsheetDocument();
 

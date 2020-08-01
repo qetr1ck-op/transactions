@@ -1,7 +1,10 @@
 // https://api.monobank.ua/docs/
 export interface MonoTransactionRequest {
   type: string;
-  statementItem: MonoTransaction;
+  data: {
+    account: string;
+    statementItem: MonoTransaction;
+  };
 }
 
 export interface MonoTransaction {
