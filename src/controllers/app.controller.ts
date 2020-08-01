@@ -21,7 +21,7 @@ export class AppController {
   async postTransactions(@Body() body: MonoTransactionRequest) {
     // TODO: validation
     // TODO: third-party logging
-    console.log(body);
+    console.log('Req', body);
     try {
       const {
         amount,
@@ -35,6 +35,8 @@ export class AppController {
       await this.googleSpreadsheetService.setActiveSpreadsheetByIndex(
         monthIndex,
       );
+
+      console.log('Res', { date, amount, monthIndex, description });
 
       await this.googleSpreadsheetService.addRow({
         [this.googleSpreadsheetService.headers.date]: date,
