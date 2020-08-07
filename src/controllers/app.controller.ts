@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Res } from '@nestjs/common';
 import { HealthCheckService } from '../services/health-check.service';
 import { MonoTransactionService } from 'src/services/mono-transaction.service';
 import { MonoTransactionRequest } from 'src/types/transaction';
 import { GoogleSpreadsheetService } from 'src/services/google-spreadsheet.service';
+import { Response } from 'express';
 
 @Controller()
 export class AppController {
@@ -18,7 +19,10 @@ export class AppController {
   }
 
   @Post('transactions/mono')
-  async postTransactions(@Body() body: MonoTransactionRequest) {
+  async postTransactions(
+    @Body() body: MonoTransactionRequest,
+    @Res() res: Response,
+  ) {
     // TODO: validation
     // TODO: third-party logging
     console.log('Req', body);
@@ -44,7 +48,7 @@ export class AppController {
         [this.googleSpreadsheetService.headers.remarks]: description,
       });
 
-      return { status: 'OK', code: 201 };
+      return res.sendStatus(200);
     } catch (e) {
       console.error(e);
       return { code: 500, message: e };
