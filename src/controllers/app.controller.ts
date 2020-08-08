@@ -40,6 +40,7 @@ export class AppController {
         monthIndex,
       );
 
+      // TODO: validate date
       console.log('Res', { date, amount, monthIndex, description });
 
       await this.googleSpreadsheetService.addRow({
