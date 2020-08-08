@@ -17,8 +17,6 @@ TODO
 
 ```bash
 $ npm install
-// or
-$ pnpm install
 ```
 
 ## Running the app
