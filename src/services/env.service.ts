@@ -1,14 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import * as functions from 'firebase-functions';
 
 type GoogleSpreadSheetEnvs =
-  | 'GOOGLE_SERVICE_ACCOUNT_EMAIL'
-  | 'GOOGLE_PRIVATE_KEY'
-  | 'GOOGLE_SPREADSHEET_ID';
+  | 'google-account-email'
+  | 'google-spread-id'
+  | 'google-private-key';
 
-@Injectable()
-export class EnvService {
+class EnvService {
+  private serviceName = 'transactions';
+
   getEnv(envKey: GoogleSpreadSheetEnvs, isMultiLine?: boolean): string {
-    const envVar = process.env[envKey];
+    const envVar = functions.config()[this.serviceName][envKey];
 
     if (!envVar) {
       console.error(`${envKey} is undefined`);
@@ -22,3 +23,5 @@ export class EnvService {
     return envVar;
   }
 }
+
+export const envService = new EnvService();

@@ -2,10 +2,8 @@ import {
   GoogleSpreadsheet,
   GoogleSpreadsheetWorksheet,
 } from 'google-spreadsheet';
-import { EnvService } from './env.service';
-import { Injectable } from '@nestjs/common';
+import { envService } from './env.service';
 
-@Injectable()
 export class GoogleSpreadsheetService {
   private document: GoogleSpreadsheet;
   private spreadsheet: GoogleSpreadsheetWorksheet;
@@ -17,12 +15,10 @@ export class GoogleSpreadsheetService {
     remarks: 'Remarks',
   };
 
-  constructor(private envService: EnvService) {}
-
   async initSpreadsheetDocument() {
     // spreadsheet key is the long id in the sheets URL
     this.document = new GoogleSpreadsheet(
-      this.envService.getEnv('GOOGLE_SPREADSHEET_ID'),
+      envService.getEnv('google-spread-id'),
     );
 
     await this.useServiceAccountAuth();
@@ -42,8 +38,10 @@ export class GoogleSpreadsheetService {
 
   private async useServiceAccountAuth(): Promise<void> {
     await this.document.useServiceAccountAuth({
-      client_email: this.envService.getEnv('GOOGLE_SERVICE_ACCOUNT_EMAIL'),
-      private_key: this.envService.getEnv('GOOGLE_PRIVATE_KEY', true),
+      client_email: envService.getEnv('google-account-email'),
+      private_key: envService.getEnv('google-private-key', true),
     });
   }
 }
+
+export const googleSpreadsheetService = new GoogleSpreadsheetService();
