@@ -1,4 +1,4 @@
-![project logo][static/img/1.png]
+![project logo](static/img/1.png)
 
 ## Description
 
