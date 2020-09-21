@@ -6,6 +6,13 @@
 
 Handle transaction and save it into google spreadsheet
 
+## Tech stack
+
+- API layer - firebase cloud functions
+- Persistence layer - firestore
+- Presentation layer - google spreadsheets
+- Infra layer - firebase
+
 ## Prerequisites
 
 1. [Create a service account in Google Cloud Platform](https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating)
