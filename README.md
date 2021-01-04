@@ -49,11 +49,10 @@ $ npm install
 
 ## Development
 
-1. Install `firebase` globally or use by `npx firebase`
+1. Install `firebase-tools` globally
 2. Export environment configuration:
 
 ```bash
-$
 $ firebase functions:config:get > .runtimeconfig.json
 ```
 
