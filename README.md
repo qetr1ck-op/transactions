@@ -11,13 +11,12 @@ Handle transaction and save it into google spreadsheet
 - API layer - firebase cloud functions
 - Persistence layer - firestore
 - Presentation layer - google spreadsheets
-- Infra layer - firebase
 
 ## Prerequisites
 
 1. [Create a service account in Google Cloud Platform](https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating)
 
-   1.1. Create and remember private keys as JSON (`google-account-email` and `google-private-key`)
+   1.1. Create private keys as JSON (`google-account-email` and `google-private-key`)
 
 2. Config google spreadsheet
 
